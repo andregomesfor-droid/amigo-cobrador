@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Amigo Cobrador</title>
-  <style> 
+  <style>
     :root {
       --bg: #07111f;
       --card: #0d1d31;
@@ -14,23 +14,23 @@
       --muted: #94aac4;
       --green: #23bd6c;
       --red: #ff667b;
-      --blue: #55a6ff
+      --blue: #55a6ff;
     }
 
     * {
-      box-sizing: border-box
+      box-sizing: border-box;
     }
 
     body {
       margin: 0;
       background: radial-gradient(circle at 10% 0, #153b65, transparent 34rem), var(--bg);
       color: var(--text);
-      font: 15px/1.45 system-ui, sans-serif
+      font: 15px/1.45 system-ui, sans-serif;
     }
 
     .wrap {
       width: min(1160px, calc(100% - 30px));
-      margin: auto
+      margin: auto;
     }
 
     header {
@@ -39,7 +39,7 @@
       z-index: 3;
       background: #081426e8;
       backdrop-filter: blur(10px);
-      border-bottom: 1px solid #1c3652
+      border-bottom: 1px solid #1c3652;
     }
 
     .top {
@@ -47,7 +47,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 16px
+      gap: 16px;
     }
 
     .brand {
@@ -55,20 +55,20 @@
       font-weight: 800;
       display: flex;
       align-items: center;
-      gap: 10px
+      gap: 10px;
     }
 
     .icon {
       background: #16436e;
       border-radius: 12px;
-      padding: 7px 9px
+      padding: 7px 9px;
     }
 
     .buttons {
       display: flex;
       gap: 8px;
       flex-wrap: wrap;
-      justify-content: end
+      justify-content: end;
     }
 
     button,
@@ -80,43 +80,43 @@
       color: var(--text);
       background: #122943;
       font: inherit;
-      font-weight: 700
+      font-weight: 700;
     }
 
     .file-label {
-      display: inline-block
+      display: inline-block;
     }
 
     button:hover,
     .file-label:hover {
       background: #1b3b60;
-      border-color: #4b7dab
+      border-color: #4b7dab;
     }
 
     .primary {
       background: #158a4f;
-      border-color: #259c60
+      border-color: #259c60;
     }
 
     .primary:hover {
-      background: #1ca961
+      background: #1ca961;
     }
 
     .danger {
       background: #3b1e2b;
       border-color: #843847;
-      color: #ffc4cd
+      color: #ffc4cd;
     }
 
     main {
-      padding: 28px 0 48px
+      padding: 28px 0 48px;
     }
 
     .stats {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 14px;
-      margin-bottom: 26px
+      margin-bottom: 26px;
     }
 
     .stat,
@@ -125,11 +125,11 @@
       background: linear-gradient(145deg, #112843, #0b192b);
       border: 1px solid var(--line);
       border-radius: 16px;
-      box-shadow: 0 15px 38px #01081780
+      box-shadow: 0 15px 38px #01081780;
     }
 
     .stat {
-      padding: 19px
+      padding: 19px;
     }
 
     .stat small,
@@ -139,49 +139,49 @@
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: .06em;
-      font-size: .72rem
+      font-size: .72rem;
     }
 
     .stat strong {
       display: block;
       font-size: 1.55rem;
-      margin-top: 7px
+      margin-top: 7px;
     }
 
     .blue {
-      color: #b9d9ff
+      color: #b9d9ff;
     }
 
     .green {
-      color: var(--green)
+      color: var(--green);
     }
 
     .red {
-      color: #ffb4c0
+      color: #ffb4c0;
     }
 
     .grid {
       display: grid;
       grid-template-columns: minmax(280px, 355px) 1fr;
       gap: 25px;
-      align-items: start
+      align-items: start;
     }
 
     .form {
       padding: 22px;
       position: sticky;
-      top: 96px
+      top: 96px;
     }
 
     h2 {
       font-size: 1.15rem;
-      margin: 0 0 5px
+      margin: 0 0 5px;
     }
 
     .hint {
       color: var(--muted);
       font-size: .88rem;
-      margin: 0 0 18px
+      margin: 0 0 18px;
     }
 
     .field {
@@ -189,7 +189,7 @@
       font-weight: 700;
       color: #ccdcf0;
       font-size: .88rem;
-      margin: 0 0 13px
+      margin: 0 0 13px;
     }
 
     input,
@@ -202,39 +202,39 @@
       border-radius: 9px;
       color: var(--text);
       background: #091728;
-      font: inherit
+      font: inherit;
     }
 
     input:focus,
     select:focus {
       outline: 3px solid #55a6ff26;
-      border-color: var(--blue)
+      border-color: var(--blue);
     }
 
     select option {
-      background: #0c1c30
+      background: #0c1c30;
     }
 
     .form .primary {
       width: 100%;
-      margin-top: 4px
+      margin-top: 4px;
     }
 
     .list-title {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin: 3px 0 14px
+      margin: 3px 0 14px;
     }
 
     .list-title span {
       color: var(--muted);
-      font-size: .85rem
+      font-size: .85rem;
     }
 
     .list {
       display: grid;
-      gap: 14px
+      gap: 14px;
     }
 
     .empty {
@@ -242,17 +242,17 @@
       border-radius: 16px;
       padding: 40px 20px;
       color: var(--muted);
-      text-align: center
+      text-align: center;
     }
 
     .empty b {
       display: block;
       color: #d5e6f9;
-      margin-bottom: 5px
+      margin-bottom: 5px;
     }
 
     .debtor {
-      overflow: hidden
+      overflow: hidden;
     }
 
     .debtor-top {
@@ -260,61 +260,61 @@
       display: flex;
       justify-content: space-between;
       gap: 12px;
-      border-bottom: 1px solid #1d3856
+      border-bottom: 1px solid #1d3856;
     }
 
     .name {
       font-size: 1.08rem;
-      font-weight: 800
+      font-weight: 800;
     }
 
     .date {
       font-size: .81rem;
-      color: var(--muted)
+      color: var(--muted);
     }
 
     .balance {
       text-align: right;
       color: #ffb9c4;
       font-size: .78rem;
-      font-weight: 700
+      font-weight: 700;
     }
 
     .balance b {
       display: block;
       color: white;
-      font-size: 1.08rem
+      font-size: 1.08rem;
     }
 
     .values {
       padding: 14px 17px;
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 10px
+      gap: 10px;
     }
 
     .value b {
-      font-size: .88rem
+      font-size: .88rem;
     }
 
     .paid {
-      color: var(--green)
+      color: var(--green);
     }
 
     .interest {
-      color: #ffd37c
+      color: #ffd37c;
     }
 
     .card-actions {
       display: flex;
       gap: 8px;
-      padding: 0 17px 17px
+      padding: 0 17px 17px;
     }
 
     .card-actions button {
       flex: 1;
       padding: 8px;
-      font-size: .83rem
+      font-size: .83rem;
     }
 
     dialog {
@@ -324,22 +324,22 @@
       border-radius: 16px;
       background: var(--card);
       color: var(--text);
-      box-shadow: 0 25px 70px #000c
+      box-shadow: 0 25px 70px #000c;
     }
 
     dialog::backdrop {
       background: #020915b8;
-      backdrop-filter: blur(3px)
+      backdrop-filter: blur(3px);
     }
 
     .modal {
-      padding: 22px
+      padding: 22px;
     }
 
     .modalhead {
       display: flex;
       justify-content: space-between;
-      gap: 12px
+      gap: 12px;
     }
 
     .close {
@@ -347,21 +347,21 @@
       background: transparent;
       padding: 0 7px;
       font-size: 1.6rem;
-      height: 35px
+      height: 35px;
     }
 
     .modalactions {
       display: flex;
       justify-content: end;
       gap: 8px;
-      margin-top: 20px
+      margin-top: 20px;
     }
 
     .history {
       display: grid;
       gap: 8px;
       max-height: 340px;
-      overflow: auto
+      overflow: auto;
     }
 
     .history-item {
@@ -371,16 +371,16 @@
       border: 1px solid #294563;
       background: #091728;
       padding: 11px;
-      border-radius: 9px
+      border-radius: 9px;
     }
 
     .history-item b {
-      color: var(--green)
+      color: var(--green);
     }
 
     .history-item small {
       display: block;
-      color: var(--muted)
+      color: var(--muted);
     }
 
     #toast {
@@ -395,80 +395,78 @@
       border-radius: 10px;
       padding: 10px 15px;
       z-index: 5;
-      pointer-events: none
+      pointer-events: none;
     }
 
     #toast.show {
       opacity: 1;
-      transform: translate(-50%, 0)
+      transform: translate(-50%, 0);
     }
 
     @media(max-width:720px) {
       .wrap {
-        width: min(100% - 22px, 600px)
+        width: min(100% - 22px, 600px);
       }
 
       .top {
         padding: 12px 0;
-        align-items: flex-start
+        align-items: flex-start;
       }
 
       .brand {
-        font-size: 1.08rem
+        font-size: 1.08rem;
       }
 
       .buttons {
-        gap: 6px
+        gap: 6px;
       }
 
       .buttons button,
       .file-label {
         font-size: .78rem;
-        padding: 8px
+        padding: 8px;
       }
 
       .stats {
         grid-template-columns: 1fr;
         gap: 8px;
-        margin-bottom: 20px
+        margin-bottom: 20px;
       }
 
       .stat {
         padding: 15px 17px;
         display: flex;
         justify-content: space-between;
-        align-items: center
+        align-items: center;
       }
 
       .stat strong {
         margin: 0;
-        font-size: 1.25rem
+        font-size: 1.25rem;
       }
 
       .grid {
         grid-template-columns: 1fr;
-        gap: 22px
+        gap: 22px;
       }
 
       .form {
-        position: static
+        position: static;
       }
 
       .values {
-        grid-template-columns: repeat(2, 1fr)
+        grid-template-columns: repeat(2, 1fr);
       }
 
       .card-actions {
-        flex-wrap: wrap
+        flex-wrap: wrap;
       }
 
       .card-actions button {
-        min-width: calc(50% - 4px)
+        min-width: calc(50% - 4px);
       }
     }
-  </style>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
-  <style>
+
     #auth {
       position: fixed;
       inset: 0;
@@ -476,7 +474,7 @@
       display: grid;
       place-items: center;
       padding: 18px;
-      background: radial-gradient(circle at 20% 0, #174773, transparent 35rem), #07111f
+      background: radial-gradient(circle at 20% 0, #174773, transparent 35rem), #07111f;
     }
 
     .auth-card {
@@ -485,27 +483,27 @@
       background: #0d1d31;
       border: 1px solid #31587f;
       border-radius: 18px;
-      box-shadow: 0 25px 70px #000b
+      box-shadow: 0 25px 70px #000b;
     }
 
     .auth-logo {
       font-size: 1.3rem;
       font-weight: 800;
-      margin-bottom: 22px
+      margin-bottom: 22px;
     }
 
     .auth-card h1 {
       font-size: 1.35rem;
-      margin: 0 0 5px
+      margin: 0 0 5px;
     }
 
     .auth-form {
-      margin-top: 20px
+      margin-top: 20px;
     }
 
     .auth-form .primary {
       width: 100%;
-      margin-top: 5px
+      margin-top: 5px;
     }
 
     .auth-switch {
@@ -515,53 +513,67 @@
       color: #91c6ff;
       padding: 12px 0 0;
       margin: auto;
-      font-size: .88rem
+      font-size: .88rem;
     }
 
     .auth-error {
       min-height: 20px;
       color: #ff9daa;
       font-size: .85rem;
-      margin: 6px 0 0
+      margin: 6px 0 0;
     }
 
     .hidden {
-      display: none !important
+      display: none !important;
     }
   </style>
+
+  <!-- Biblioteca para PDF -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 </head>
 
 <body>
   <header>
     <div class="wrap top">
       <div class="brand"><span class="icon">💵</span>Amigo Cobrador</div>
-      <div class="buttons"><button id="export">⇩ Exportar Backup</button><label class="file-label">⇧ Importar
-          Backup<input id="import" type="file" accept=".json,application/json" hidden></label><button
-          id="logout">Sair</button></div>
+      <div class="buttons">
+        <button id="openSimulador">🧮 Simulador</button>
+        <button id="export">⇩ Exportar Backup</button>
+        <label class="file-label">
+          ⇧ Importar Backup
+          <input id="import" type="file" accept=".json,application/json" hidden>
+        </label>
+        <button id="logout">Sair</button>
+      </div>
     </div>
   </header>
+
   <main class="wrap">
     <section class="stats">
-      <article class="stat"><small>Total emprestado</small><strong class="blue" id="totalLoan">R$ 0,00</strong>
-      </article>
-      <article class="stat"><small>Total recebido</small><strong class="green" id="totalReceived">R$ 0,00</strong>
-      </article>
+      <article class="stat"><small>Total emprestado</small><strong class="blue" id="totalLoan">R$ 0,00</strong></article>
+      <article class="stat"><small>Total recebido</small><strong class="green" id="totalReceived">R$ 0,00</strong></article>
       <article class="stat"><small>Falta receber</small><strong class="red" id="totalDue">R$ 0,00</strong></article>
     </section>
+
     <section class="grid">
       <aside class="panel form">
         <h2>Novo empréstimo</h2>
         <p class="hint">Cadastre os dados para começar o controle.</p>
-        <form id="loanForm"><label class="field">Nome do devedor<input id="name" required maxlength="80"
-              placeholder="Ex.: Maria Silva"></label><label class="field">Valor emprestado (R$)<input id="amount"
-              type="number" min=".01" step=".01" required inputmode="decimal"></label><label class="field">Data do
-            empréstimo<input id="loanDate" type="date" required></label><label class="field">Taxa de juros (%)<input
-              id="rate" type="number" min="0" step=".01" required value="0" inputmode="decimal"></label><label
-            class="field">Ciclo de cobrança<select id="cycle">
+        <form id="loanForm">
+          <label class="field">Nome do devedor<input id="name" required maxlength="80" placeholder="Ex.: Maria Silva"></label>
+          <label class="field">Valor emprestado (R$)<input id="amount" type="number" min=".01" step=".01" required inputmode="decimal"></label>
+          <label class="field">Data do empréstimo<input id="loanDate" type="date" required></label>
+          <label class="field">Taxa de juros (%)<input id="rate" type="number" min="0" step=".01" required value="0" inputmode="decimal"></label>
+          <label class="field">Ciclo de cobrança
+            <select id="cycle">
               <option value="mensal">Mensal</option>
               <option value="diario">Diário</option>
-            </select></label><button class="primary" type="submit">+ Cadastrar empréstimo</button></form>
+            </select>
+          </label>
+          <button class="primary" type="submit">+ Cadastrar empréstimo</button>
+        </form>
       </aside>
+
       <section>
         <div class="list-title">
           <h2>Devedores</h2><span id="count">0 cadastrados</span>
@@ -570,55 +582,145 @@
       </section>
     </section>
   </main>
+
+  <!-- Modal Recebimento -->
   <dialog id="paymentDialog">
     <form class="modal" id="paymentForm">
       <div class="modalhead">
         <div>
           <h2>Registrar recebimento</h2>
           <p class="hint" id="paymentFor"></p>
-        </div><button class="close" type="button" data-close>×</button>
-      </div><label class="field">Valor recebido (R$)<input id="payValue" type="number" min=".01" step=".01"
-          required></label><label class="field">Data do pagamento<input id="payDate" type="date" required></label><label
-        class="field">Observação <input id="payNote" maxlength="150" placeholder="Ex.: Pago via PIX"></label>
-      <div class="modalactions"><button type="button" data-close>Cancelar</button><button class="primary"
-          type="submit">Salvar pagamento</button></div>
+        </div>
+        <button class="close" type="button" data-close>×</button>
+      </div>
+      <label class="field">Valor recebido (R$)<input id="payValue" type="number" min=".01" step=".01" required></label>
+      <label class="field">Data do pagamento<input id="payDate" type="date" required></label>
+      <label class="field">Observação <input id="payNote" maxlength="150" placeholder="Ex.: Pago via PIX"></label>
+      <div class="modalactions">
+        <button type="button" data-close>Cancelar</button>
+        <button class="primary" type="submit">Salvar pagamento</button>
+      </div>
     </form>
   </dialog>
+
+  <!-- Modal Histórico -->
   <dialog id="historyDialog">
     <div class="modal">
       <div class="modalhead">
         <div>
           <h2>Histórico de pagamentos</h2>
           <p class="hint" id="historyFor"></p>
-        </div><button class="close" type="button" data-close>×</button>
+        </div>
+        <button class="close" type="button" data-close>×</button>
       </div>
       <div class="history" id="history"></div>
     </div>
   </dialog>
+
+  <!-- Modal Simulador -->
+  <dialog id="simuladorDialog">
+    <div class="modal">
+      <div class="modalhead">
+        <div>
+          <h2>Simulador de Juros</h2>
+          <p class="hint">Simule o valor final antes de realizar o empréstimo</p>
+        </div>
+        <button class="close" type="button" data-close>×</button>
+      </div>
+
+      <form id="simuladorForm" onsubmit="event.preventDefault();">
+        <label class="field">
+          Valor Inicial (R$)
+          <input id="simValor" type="number" min="1" step="0.01" value="1000" required>
+        </label>
+        <label class="field">
+          Taxa de Juros (%)
+          <input id="simTaxa" type="number" min="0" step="0.1" value="10" required>
+        </label>
+        <label class="field">
+          Período (Meses / Dias)
+          <input id="simMeses" type="number" min="1" step="1" value="6" required>
+        </label>
+        <label class="field">
+          Tipo de Juros
+          <select id="simTipo">
+            <option value="simples">Juros Simples</option>
+            <option value="compostos">Juros Compostos</option>
+          </select>
+        </label>
+      </form>
+
+      <hr style="border-color: var(--line); margin: 15px 0;">
+
+      <div style="background: #091728; padding: 12px; border-radius: 9px; border: 1px solid var(--line);">
+        <div style="display: flex; justify-content: space-between; margin-bottom: 6px;">
+          <span style="color: var(--muted);">Juros Totais:</span>
+          <b id="simTotalJuros" style="color: #ffd37c;">R$ 0,00</b>
+        </div>
+        <div style="display: flex; justify-content: space-between; font-size: 1.1rem;">
+          <span>Total Final:</span>
+          <b id="simTotalFinal" style="color: var(--green);">R$ 0,00</b>
+        </div>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- Modal Edição -->
+  <dialog id="editModal">
+    <form class="modal" id="editForm">
+      <div class="modalhead">
+        <div>
+          <h2>Editar Empréstimo</h2>
+          <p class="hint">Altere os dados do empréstimo selecionado.</p>
+        </div>
+        <button class="close" type="button" data-close>×</button>
+      </div>
+      <label class="field">Nome do Devedor<input type="text" id="editName" required></label>
+      <label class="field">Valor Inicial (R$)<input type="number" id="editValue" step="0.01" required></label>
+      <label class="field">Taxa de Juros (%)<input type="number" id="editRate" step="0.1" required></label>
+      <label class="field">Ciclo de Cobrança
+        <select id="editCycle">
+          <option value="mensal">Mensal</option>
+          <option value="diario">Diário</option>
+        </select>
+      </label>
+      <div class="modalactions">
+        <button type="button" data-close>Cancelar</button>
+        <button class="primary" type="submit">Salvar Alterações</button>
+      </div>
+    </form>
+  </dialog>
+
   <div id="toast"></div>
+
+  <!-- Tela de Login -->
   <div id="auth">
     <section class="auth-card">
       <div class="auth-logo">💵 Amigo Cobrador</div>
+
       <div id="loginBox">
         <h1>Bem-vindo</h1>
         <p class="hint">Entre para acessar seus empréstimos.</p>
-        <form class="auth-form" id="loginForm"><label class="field">Login (nome e sobrenome)<input id="loginName"
-              required autocomplete="username" placeholder="Ex.: Maria Silva"></label><label class="field">Senha de 4
-            dígitos<input id="loginPin" required type="password" inputmode="numeric" pattern="[0-9]{4}" maxlength="4"
-              autocomplete="current-password" placeholder="••••"></label>
-          <p class="auth-error" id="loginError"></p><button class="primary" type="submit">Entrar</button>
-        </form><button class="auth-switch" id="showRegister">Ainda não tem conta? Cadastre-se</button>
+        <form class="auth-form" id="loginForm">
+          <label class="field">Login (nome e sobrenome)<input id="loginName" required autocomplete="username" placeholder="Ex.: Maria Silva"></label>
+          <label class="field">Senha de 4 dígitos<input id="loginPin" required type="password" inputmode="numeric" pattern="[0-9]{4}" maxlength="4" autocomplete="current-password" placeholder="••••"></label>
+          <p class="auth-error" id="loginError"></p>
+          <button class="primary" type="submit">Entrar</button>
+        </form>
+        <button class="auth-switch" id="showRegister">Ainda não tem conta? Cadastre-se</button>
       </div>
+
       <div id="registerBox" class="hidden">
         <h1>Criar cadastro</h1>
         <p class="hint">Preencha os dados abaixo para começar.</p>
-        <form class="auth-form" id="registerForm"><label class="field">Nome<input id="firstName" required maxlength="40"
-              autocomplete="given-name"></label><label class="field">Sobrenome<input id="lastName" required
-              maxlength="60" autocomplete="family-name"></label><label class="field">Senha de 4 dígitos<input
-              id="registerPin" required type="password" inputmode="numeric" pattern="[0-9]{4}" maxlength="4"
-              autocomplete="new-password" placeholder="••••"></label>
-          <p class="auth-error" id="registerError"></p><button class="primary" type="submit">Criar conta</button>
-        </form><button class="auth-switch" id="showLogin">Já tenho conta</button>
+        <form class="auth-form" id="registerForm">
+          <label class="field">Nome<input id="firstName" required maxlength="40" autocomplete="given-name"></label>
+          <label class="field">Sobrenome<input id="lastName" required maxlength="60" autocomplete="family-name"></label>
+          <label class="field">Senha de 4 dígitos<input id="registerPin" required type="password" inputmode="numeric" pattern="[0-9]{4}" maxlength="4" autocomplete="new-password" placeholder="••••"></label>
+          <p class="auth-error" id="registerError"></p>
+          <button class="primary" type="submit">Criar conta</button>
+        </form>
+        <button class="auth-switch" id="showLogin">Já tenho conta</button>
       </div>
     </section>
   </div>
@@ -643,7 +745,7 @@
     const db = firebase.firestore();
 
     const q = x => document.getElementById(x),
-      pin = x => /^[0-9]{4}$/.test(x),
+      pinValido = x => /^[0-9]{4}$/.test(x),
       openAuth = () => q("auth").classList.remove("hidden"),
       closeAuth = () => q("auth").classList.add("hidden"),
       nameToEmail = name => name.trim().toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/\s+/g, ".") + "@amigocobrador.com",
@@ -655,7 +757,7 @@
     q("registerForm").onsubmit = async e => {
       e.preventDefault();
       let a = q("firstName").value.trim(), b = q("lastName").value.trim(), p = q("registerPin").value;
-      if (!pin(p)) { q("registerError").textContent = "A senha deve conter exatamente 4 dígitos."; return; }
+      if (!pinValido(p)) { q("registerError").textContent = "A senha deve conter exatamente 4 dígitos."; return; }
 
       let email = nameToEmail(a + " " + b), pass = pinToPassword(p);
       try {
@@ -761,15 +863,15 @@
       render();
     }
 
-   function card(d) {
-  let x = calc(d);
-  let isQuitado = x.s <= 0;
-  let pdfBtn = isQuitado 
-    ? '<button class="primary" data-a="pdf" data-id="' + d.id + '">📄 Baixar PDF</button>' 
-    : '<button class="primary" data-a="pay" data-id="' + d.id + '">+ Receber</button>';
+    function renderCard(d) {
+      let x = calc(d);
+      let isQuitado = x.s <= 0;
+      let pdfBtn = isQuitado
+        ? '<button class="primary" data-a="pdf" data-id="' + d.id + '">📄 Baixar PDF</button>'
+        : '<button class="primary" data-a="pay" data-id="' + d.id + '">+ Receber</button>';
 
-  return '<article class="debtor"><div class="debtor-top"><div><div class="name">' + esc(d.nome) + '</div><span class="date">Empréstimo em ' + date(d.dataEmprestimo) + '</span></div><div class="balance">Saldo atual<b>' + br(x.s) + '</b></div></div><div class="values"><div class="value"><small>Valor inicial</small><b>' + br(d.valorInicial) + '</b></div><div class="value"><small>Já pago</small><b class="paid">' + br(x.p) + '</b></div><div class="value"><small>Juros acumulados</small><b class="interest">' + br(x.j) + '</b></div><div class="value"><small>Taxa</small><b>' + d.taxaJuros + '% / ' + (d.tipoJuros === "diario" ? "dia" : "mês") + '</b></div></div><div class="card-actions">' + pdfBtn + '<button data-a="history" data-id="' + d.id + '">Histórico</button><button class="danger" data-a="del" data-id="' + d.id + '">Excluir</button></div></article>';
-}
+      return '<article class="debtor"><div class="debtor-top"><div><div class="name">' + esc(d.nome) + '</div><span class="date">Empréstimo em ' + date(d.dataEmprestimo) + '</span></div><div class="balance">Saldo atual<b>' + br(x.s) + '</b></div></div><div class="values"><div class="value"><small>Valor inicial</small><b>' + br(d.valorInicial) + '</b></div><div class="value"><small>Já pago</small><b class="paid">' + br(x.p) + '</b></div><div class="value"><small>Juros acumulados</small><b class="interest">' + br(x.j) + '</b></div><div class="value"><small>Taxa</small><b>' + d.taxaJuros + '% / ' + (d.tipoJuros === "diario" ? "dia" : "mês") + '</b></div></div><div class="card-actions">' + pdfBtn + '<button data-a="history" data-id="' + d.id + '">Histórico</button><button data-a="edit" data-id="' + d.id + '">Editar</button><button class="danger" data-a="del" data-id="' + d.id + '">Excluir</button></div></article>';
+    }
 
     function render() {
       let t = { l: 0, p: 0, s: 0 };
@@ -783,7 +885,7 @@
       q("totalReceived").textContent = br(t.p);
       q("totalDue").textContent = br(t.s);
       q("count").textContent = all.length + " " + (all.length === 1 ? "cadastrado" : "cadastrados");
-      q("list").innerHTML = all.length ? all.map(card).join("") : '<div class="empty"><b>Nenhum empréstimo cadastrado</b>Use o formulário para adicionar o primeiro devedor.</div>';
+      q("list").innerHTML = all.length ? all.map(renderCard).join("") : '<div class="empty"><b>Nenhum empréstimo cadastrado</b>Use o formulário para adicionar o primeiro devedor.</div>';
     }
 
     q("loanDate").value = now();
@@ -816,10 +918,11 @@
       let d = all.find(x => x.id === b.dataset.id);
       if (!d) return;
       sel = d.id;
-     if (b.dataset.a === "pdf") {
-      gerarPDFQuitacao(d);
-      msg("Gerando PDF do comprovante...");
-    } else if (b.dataset.a === "pay") {
+
+      if (b.dataset.a === "pdf") {
+        gerarPDFQuitacao(d);
+        msg("Gerando PDF do comprovante...");
+      } else if (b.dataset.a === "pay") {
         q("paymentFor").textContent = "Lançamento para " + d.nome;
         q("payValue").value = "";
         q("payDate").value = now();
@@ -830,12 +933,34 @@
         let p = [...d.pagamentos].sort((a, b) => b.data.localeCompare(a.data));
         q("history").innerHTML = p.length ? p.map(x => '<div class="history-item"><div>' + date(x.data) + '<small>' + esc(x.obs || "Sem observação") + '</small></div><b>' + br(x.valor) + '</b></div>').join("") : '<div class="empty">Ainda não há pagamentos registrados.</div>';
         q("historyDialog").showModal();
+      } else if (b.dataset.a === "edit") {
+        q("editName").value = d.nome;
+        q("editValue").value = d.valorInicial;
+        q("editRate").value = d.taxaJuros;
+        q("editCycle").value = d.tipoJuros;
+        q("editModal").showModal();
       } else if (confirm("Excluir o cadastro de " + d.nome + "? Esta ação não pode ser desfeita.")) {
         all = all.filter(x => x.id !== d.id);
         await salvarFirestore();
         render();
         msg("Cadastro excluído.");
       }
+    };
+
+    q("editForm").onsubmit = async e => {
+      e.preventDefault();
+      let d = all.find(x => x.id === sel);
+      if (!d) return;
+
+      d.nome = q("editName").value.trim();
+      d.valorInicial = +q("editValue").value || 0;
+      d.taxaJuros = +q("editRate").value || 0;
+      d.tipoJuros = q("editCycle").value;
+
+      await salvarFirestore();
+      render();
+      q("editModal").close();
+      msg("Dados atualizados.");
     };
 
     q("paymentForm").onsubmit = async e => {
@@ -878,9 +1003,10 @@
       }
       e.target.value = "";
     };
-  function gerarPDFQuitacao(d) {
+
+    function gerarPDFQuitacao(d) {
       let x = calc(d);
-      let pagamentosHtml = d.pagamentos.map(p => 
+      let pagamentosHtml = d.pagamentos.map(p =>
         `<tr>
           <td style="padding:6px;border-bottom:1px solid #ccc;">${date(p.data)}</td>
           <td style="padding:6px;border-bottom:1px solid #ccc;">${esc(p.obs || "Sem obs")}</td>
@@ -925,10 +1051,44 @@
 
       html2pdf().set(opt).from(template).save();
     }
+
+    // --- LÓGICA DO SIMULADOR ---
+    function simularJuros() {
+      const valor = +q("simValor").value || 0;
+      const taxa = (+q("simTaxa").value || 0) / 100;
+      const tempo = +q("simMeses").value || 0;
+      const tipo = q("simTipo").value;
+
+      let totalFinal = 0;
+      let jurosTotais = 0;
+
+      if (tipo === "simples") {
+        jurosTotais = valor * taxa * tempo;
+        totalFinal = valor + jurosTotais;
+      } else {
+        totalFinal = valor * Math.pow(1 + taxa, tempo);
+        jurosTotais = totalFinal - valor;
+      }
+
+      q("simTotalJuros").textContent = br(jurosTotais);
+      q("simTotalFinal").textContent = br(totalFinal);
+    }
+
+    ["simValor", "simTaxa", "simMeses", "simTipo"].forEach(id => {
+      const el = q(id);
+      if (el) {
+        el.addEventListener("input", simularJuros);
+        el.addEventListener("change", simularJuros);
+      }
+    });
+
+    if (q("openSimulador")) {
+      q("openSimulador").onclick = () => {
+        simularJuros();
+        q("simuladorDialog").showModal();
+      };
+    }
   </script>
-</body>
-</html>
-  
 </body>
 
 </html>
