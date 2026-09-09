@@ -174,19 +174,6 @@
     .green { color: var(--green); }
     .red { color: var(--red); }
 
-    .grid {
-      display: grid;
-      grid-template-columns: minmax(280px, 355px) 1fr;
-      gap: 25px;
-      align-items: start;
-    }
-
-    .form {
-      padding: 22px;
-      position: sticky;
-      top: 96px;
-    }
-
     h2 { font-size: 1.15rem; margin: 0 0 5px; }
 
     .hint {
@@ -219,8 +206,6 @@
       outline: 3px solid #55a6ff26;
       border-color: var(--blue);
     }
-
-    .form .primary { width: 100%; margin-top: 4px; }
 
     /* FILTROS E BUSCA */
     .filter-bar {
@@ -422,8 +407,6 @@
       .stats { grid-template-columns: 1fr; gap: 8px; margin-bottom: 20px; }
       .stat { padding: 15px 17px; display: flex; justify-content: space-between; align-items: center; }
       .stat strong { margin: 0; font-size: 1.25rem; }
-      .grid { grid-template-columns: 1fr; gap: 22px; }
-      .form { position: static; }
       .values { grid-template-columns: repeat(2, 1fr); }
       .card-actions button { min-width: calc(50% - 4px); }
     }
@@ -498,6 +481,7 @@
     <div class="wrap top">
       <div class="brand"><span class="icon">💵</span>Amigo Cobrador</div>
       <div class="buttons">
+        <button id="openNewLoanModal" class="primary">+ Novo Empréstimo</button>
         <button id="openReports">📊 Relatórios</button>
         <button id="openSimulador">🧮 Simulador</button>
         <button id="openConfig">⚙️ Configurações</button>
@@ -513,45 +497,52 @@
       <article class="stat"><small>Falta receber</small><strong class="red" id="totalDue">R$ 0,00</strong></article>
     </section>
 
-    <section class="grid">
-      <aside class="panel form">
-        <h2>Novo empréstimo</h2>
-        <p class="hint">Cadastre os dados para começar o controle.</p>
-        <form id="loanForm">
-          <label class="field">Nome do devedor<input id="name" required maxlength="80" placeholder="Ex.: Maria Silva"></label>
-          <label class="field">Telefone WhatsApp (com DDD)<input id="phone" placeholder="Ex.: 85999998888" inputmode="tel"></label>
-          <label class="field">Valor emprestado (R$)<input id="amount" type="number" min=".01" step=".01" required inputmode="decimal"></label>
-          <label class="field">Data do empréstimo<input id="loanDate" type="date" required></label>
-          <label class="field">Data do primeiro vencimento<input id="dueDate" type="date" required></label>
-          <label class="field">Taxa de juros (%)<input id="rate" type="number" min="0" step=".01" required value="0" inputmode="decimal"></label>
-          <label class="field">Ciclo de cobrança
-            <select id="cycle">
-              <option value="mensal">Mensal</option>
-              <option value="diario">Diário</option>
-            </select>
-          </label>
-          <button class="primary" type="submit">+ Cadastrar empréstimo</button>
-        </form>
-      </aside>
+    <section>
+      <div class="filter-bar">
+        <input id="searchInput" placeholder="🔍 Buscar por nome do devedor...">
+        <select id="statusFilter">
+          <option value="all">Todos os Status</option>
+          <option value="pending">Apenas Pendentes</option>
+          <option value="atrasado">Apenas Em Atraso</option>
+          <option value="quitado">Apenas Quitados</option>
+        </select>
+      </div>
 
-      <section>
-        <div class="filter-bar">
-          <input id="searchInput" placeholder="🔍 Buscar por nome do devedor...">
-          <select id="statusFilter">
-            <option value="all">Todos os Status</option>
-            <option value="pending">Apenas Pendentes</option>
-            <option value="atrasado">Apenas Em Atraso</option>
-            <option value="quitado">Apenas Quitados</option>
-          </select>
-        </div>
-
-        <div class="list-title">
-          <h2>Devedores</h2><span id="count">0 cadastrados</span>
-        </div>
-        <div class="list" id="list"></div>
-      </section>
+      <div class="list-title">
+        <h2>Devedores</h2><span id="count">0 cadastrados</span>
+      </div>
+      <div class="list" id="list"></div>
     </section>
   </main>
+
+  <!-- Modal Novo Empréstimo -->
+  <dialog id="newLoanModal">
+    <form class="modal" id="loanForm">
+      <div class="modalhead">
+        <div>
+          <h2>Novo Empréstimo</h2>
+          <p class="hint">Cadastre os dados para começar o controle.</p>
+        </div>
+        <button class="close" type="button" data-close>×</button>
+      </div>
+      <label class="field">Nome do devedor<input id="name" required maxlength="80" placeholder="Ex.: Maria Silva"></label>
+      <label class="field">Telefone WhatsApp (com DDD)<input id="phone" placeholder="Ex.: 85999998888" inputmode="tel"></label>
+      <label class="field">Valor emprestado (R$)<input id="amount" type="number" min=".01" step=".01" required inputmode="decimal"></label>
+      <label class="field">Data do empréstimo<input id="loanDate" type="date" required></label>
+      <label class="field">Data do primeiro vencimento<input id="dueDate" type="date" required></label>
+      <label class="field">Taxa de juros (%)<input id="rate" type="number" min="0" step=".01" required value="0" inputmode="decimal"></label>
+      <label class="field">Ciclo de cobrança
+        <select id="cycle">
+          <option value="mensal">Mensal</option>
+          <option value="diario">Diário</option>
+        </select>
+      </label>
+      <div class="modalactions">
+        <button type="button" data-close>Cancelar</button>
+        <button class="primary" type="submit">+ Cadastrar Empréstimo</button>
+      </div>
+    </form>
+  </dialog>
 
   <!-- Modal Recebimento -->
   <dialog id="paymentDialog">
@@ -1021,6 +1012,12 @@
     q("dueDate").value = now();
     q("payDate").value = now();
 
+    q("openNewLoanModal").onclick = () => {
+      q("loanDate").value = now();
+      q("dueDate").value = now();
+      q("newLoanModal").showModal();
+    };
+
     q("loanForm").onsubmit = async e => {
       e.preventDefault();
       let d = clean({
@@ -1039,9 +1036,8 @@
       await salvarFirestore();
       render();
       e.target.reset();
-      q("loanDate").value = now();
-      q("dueDate").value = now();
       q("rate").value = 0;
+      q("newLoanModal").close();
       msg("Empréstimo cadastrado.");
     };
 
@@ -1114,7 +1110,17 @@
       e.preventDefault();
       let d = all.find(x => x.id === sel), v = +q("payValue").value;
       if (!d || v <= 0) return;
-      d.pagamentos.push({ id: uid(), valor: v, data: q("payDate").value, obs: q("payNote").value.trim() });
+
+      let payDateValue = q("payDate").value;
+      d.pagamentos.push({ id: uid(), valor: v, data: payDateValue, obs: q("payNote").value.trim() });
+
+      // Se for empréstimo diário, avança o vencimento para o dia seguinte ao pagamento
+      if (d.tipoJuros === "diario") {
+        let dt = new Date(payDateValue + "T12:00:00");
+        dt.setDate(dt.getDate() + 1);
+        d.dataVencimento = dt.toISOString().slice(0, 10);
+      }
+
       await salvarFirestore();
       render();
       q("paymentDialog").close();
