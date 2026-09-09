@@ -15,6 +15,22 @@
       --green: #23bd6c;
       --red: #ff667b;
       --blue: #55a6ff;
+      --input-bg: #091728;
+      --header-bg: #081426e8;
+    }
+
+    /* TEMA CLARO */
+    body.light-theme {
+      --bg: #f0f4f8;
+      --card: #ffffff;
+      --line: #cbd5e1;
+      --text: #0f172a;
+      --muted: #64748b;
+      --green: #16a34a;
+      --red: #dc2626;
+      --blue: #2563eb;
+      --input-bg: #f8fafc;
+      --header-bg: #fffffffa;
     }
 
     * {
@@ -26,6 +42,11 @@
       background: radial-gradient(circle at 10% 0, #153b65, transparent 34rem), var(--bg);
       color: var(--text);
       font: 15px/1.45 system-ui, sans-serif;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    body.light-theme {
+      background: radial-gradient(circle at 10% 0, #e2e8f0, transparent 34rem), var(--bg);
     }
 
     .wrap {
@@ -37,9 +58,9 @@
       position: sticky;
       top: 0;
       z-index: 3;
-      background: #081426e8;
+      background: var(--header-bg);
       backdrop-filter: blur(10px);
-      border-bottom: 1px solid #1c3652;
+      border-bottom: 1px solid var(--line);
     }
 
     .top {
@@ -78,7 +99,7 @@
       border-radius: 10px;
       padding: 10px 13px;
       color: var(--text);
-      background: #122943;
+      background: var(--card);
       font: inherit;
       font-weight: 700;
     }
@@ -89,13 +110,14 @@
 
     button:hover,
     .file-label:hover {
-      background: #1b3b60;
-      border-color: #4b7dab;
+      opacity: 0.9;
+      border-color: var(--blue);
     }
 
     .primary {
       background: #158a4f;
       border-color: #259c60;
+      color: white;
     }
 
     .primary:hover {
@@ -122,10 +144,10 @@
     .stat,
     .panel,
     .debtor {
-      background: linear-gradient(145deg, #112843, #0b192b);
+      background: var(--card);
       border: 1px solid var(--line);
       border-radius: 16px;
-      box-shadow: 0 15px 38px #01081780;
+      box-shadow: 0 10px 30px #0000001a;
     }
 
     .stat {
@@ -149,7 +171,7 @@
     }
 
     .blue {
-      color: #b9d9ff;
+      color: var(--blue);
     }
 
     .green {
@@ -157,7 +179,7 @@
     }
 
     .red {
-      color: #ffb4c0;
+      color: var(--red);
     }
 
     .grid {
@@ -187,7 +209,7 @@
     .field {
       display: block;
       font-weight: 700;
-      color: #ccdcf0;
+      color: var(--text);
       font-size: .88rem;
       margin: 0 0 13px;
     }
@@ -201,7 +223,7 @@
       border: 1px solid var(--line);
       border-radius: 9px;
       color: var(--text);
-      background: #091728;
+      background: var(--input-bg);
       font: inherit;
     }
 
@@ -209,10 +231,6 @@
     select:focus {
       outline: 3px solid #55a6ff26;
       border-color: var(--blue);
-    }
-
-    select option {
-      background: #0c1c30;
     }
 
     .form .primary {
@@ -238,7 +256,7 @@
     }
 
     .empty {
-      border: 1px dashed #355678;
+      border: 1px dashed var(--line);
       border-radius: 16px;
       padding: 40px 20px;
       color: var(--muted);
@@ -247,7 +265,7 @@
 
     .empty b {
       display: block;
-      color: #d5e6f9;
+      color: var(--text);
       margin-bottom: 5px;
     }
 
@@ -260,7 +278,7 @@
       display: flex;
       justify-content: space-between;
       gap: 12px;
-      border-bottom: 1px solid #1d3856;
+      border-bottom: 1px solid var(--line);
     }
 
     .name {
@@ -275,14 +293,14 @@
 
     .balance {
       text-align: right;
-      color: #ffb9c4;
+      color: var(--red);
       font-size: .78rem;
       font-weight: 700;
     }
 
     .balance b {
       display: block;
-      color: white;
+      color: var(--text);
       font-size: 1.08rem;
     }
 
@@ -320,7 +338,7 @@
     dialog {
       width: min(460px, calc(100% - 28px));
       padding: 0;
-      border: 1px solid #3d6388;
+      border: 1px solid var(--line);
       border-radius: 16px;
       background: var(--card);
       color: var(--text);
@@ -368,8 +386,8 @@
       display: flex;
       justify-content: space-between;
       gap: 10px;
-      border: 1px solid #294563;
-      background: #091728;
+      border: 1px solid var(--line);
+      background: var(--input-bg);
       padding: 11px;
       border-radius: 9px;
     }
@@ -390,8 +408,8 @@
       transform: translate(-50%, 20px);
       opacity: 0;
       transition: .2s;
-      background: #173858;
-      border: 1px solid #5081ae;
+      background: var(--card);
+      border: 1px solid var(--line);
       border-radius: 10px;
       padding: 10px 15px;
       z-index: 5;
@@ -526,6 +544,12 @@
     .hidden {
       display: none !important;
     }
+
+    .config-section {
+      border-top: 1px solid var(--line);
+      padding-top: 14px;
+      margin-top: 14px;
+    }
   </style>
 
   <!-- Biblioteca para PDF -->
@@ -538,11 +562,7 @@
       <div class="brand"><span class="icon">💵</span>Amigo Cobrador</div>
       <div class="buttons">
         <button id="openSimulador">🧮 Simulador</button>
-        <button id="export">⇩ Exportar Backup</button>
-        <label class="file-label">
-          ⇧ Importar Backup
-          <input id="import" type="file" accept=".json,application/json" hidden>
-        </label>
+        <button id="openConfig">⚙️ Configurações</button>
         <button id="logout">Sair</button>
       </div>
     </div>
@@ -652,7 +672,7 @@
 
       <hr style="border-color: var(--line); margin: 15px 0;">
 
-      <div style="background: #091728; padding: 12px; border-radius: 9px; border: 1px solid var(--line);">
+      <div style="background: var(--input-bg); padding: 12px; border-radius: 9px; border: 1px solid var(--line);">
         <div style="display: flex; justify-content: space-between; margin-bottom: 6px;">
           <span style="color: var(--muted);">Juros Totais:</span>
           <b id="simTotalJuros" style="color: #ffd37c;">R$ 0,00</b>
@@ -689,6 +709,52 @@
         <button class="primary" type="submit">Salvar Alterações</button>
       </div>
     </form>
+  </dialog>
+
+  <!-- Modal Configurações -->
+  <dialog id="configModal">
+    <div class="modal">
+      <div class="modalhead">
+        <div>
+          <h2>Configurações</h2>
+          <p class="hint">Ajuste suas preferências e gerencie sua conta.</p>
+        </div>
+        <button class="close" type="button" data-close>×</button>
+      </div>
+
+      <!-- Tema -->
+      <div class="config-section" style="margin-top:0; border-top:none; padding-top:0;">
+        <label class="field">Tema do Sistema
+          <select id="themeSelect">
+            <option value="dark">Tema Escuro</option>
+            <option value="light">Tema Claro</option>
+          </select>
+        </label>
+      </div>
+
+      <!-- Alterar Senha -->
+      <div class="config-section">
+        <form id="changePinForm">
+          <h2>Alterar Senha (PIN)</h2>
+          <label class="field">Nova Senha de 4 dígitos
+            <input id="newPin" type="password" inputmode="numeric" pattern="[0-9]{4}" maxlength="4" placeholder="••••" required>
+          </label>
+          <button class="primary" type="submit" style="width: 100%; margin-top: 5px;">Atualizar Senha</button>
+        </form>
+      </div>
+
+      <!-- Backups -->
+      <div class="config-section">
+        <h2>Backup de Dados</h2>
+        <div style="display: flex; gap: 8px; margin-top: 10px; flex-wrap: wrap;">
+          <button id="exportConfig" style="flex: 1;">⇩ Exportar Backup</button>
+          <label class="file-label" style="flex: 1; text-align: center;">
+            ⇧ Importar Backup
+            <input id="importConfig" type="file" accept=".json,application/json" hidden>
+          </label>
+        </div>
+      </div>
+    </div>
   </dialog>
 
   <div id="toast"></div>
@@ -976,7 +1042,46 @@
 
     document.querySelectorAll("[data-close]").forEach(x => x.onclick = () => x.closest("dialog").close());
 
-    q("export").onclick = () => {
+    // --- CONFIGURAÇÕES & BACKUP ---
+    q("openConfig").onclick = () => q("configModal").showModal();
+
+    // Tema
+    const savedTheme = localStorage.getItem("ac_theme") || "dark";
+    if (savedTheme === "light") {
+      document.body.classList.add("light-theme");
+      q("themeSelect").value = "light";
+    }
+
+    q("themeSelect").onchange = e => {
+      if (e.target.value === "light") {
+        document.body.classList.add("light-theme");
+        localStorage.setItem("ac_theme", "light");
+      } else {
+        document.body.classList.remove("light-theme");
+        localStorage.setItem("ac_theme", "dark");
+      }
+    };
+
+    // Alterar Senha (PIN)
+    q("changePinForm").onsubmit = async e => {
+      e.preventDefault();
+      let newPin = q("newPin").value;
+      if (!pinValido(newPin)) return msg("A senha deve ter 4 dígitos.");
+
+      let user = auth.currentUser;
+      if (user) {
+        try {
+          await user.updatePassword(pinToPassword(newPin));
+          msg("Senha alterada com sucesso!");
+          q("newPin").value = "";
+          q("configModal").close();
+        } catch (err) {
+          msg("Erro ao alterar senha. Reentre na conta.");
+        }
+      }
+    };
+
+    q("exportConfig").onclick = () => {
       let u = URL.createObjectURL(new Blob([JSON.stringify({ app: "Amigo Cobrador", versao: 1, exportadoEm: new Date().toISOString(), devedores: all }, null, 2)], { type: "application/json" })),
         a = document.createElement("a");
       a.href = u;
@@ -986,7 +1091,7 @@
       msg("Backup exportado.");
     };
 
-    q("import").onchange = async e => {
+    q("importConfig").onchange = async e => {
       let f = e.target.files[0];
       if (!f) return;
       try {
@@ -997,6 +1102,7 @@
           await salvarFirestore();
           render();
           msg("Backup restaurado.");
+          q("configModal").close();
         }
       } catch (z) {
         msg("Arquivo de backup inválido.");
