@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Amigo Cobrador</title>
+  <title>Amigo Cobrador Pro</title>
   <style>
     :root {
       --bg: #07111f;
@@ -14,6 +14,7 @@
       --muted: #94aac4;
       --green: #23bd6c;
       --red: #ff667b;
+      --yellow: #f59e0b;
       --blue: #55a6ff;
       --input-bg: #091728;
       --header-bg: #081426e8;
@@ -28,14 +29,13 @@
       --muted: #64748b;
       --green: #16a34a;
       --red: #dc2626;
+      --yellow: #d97706;
       --blue: #2563eb;
       --input-bg: #f8fafc;
       --header-bg: #fffffffa;
     }
 
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     body {
       margin: 0;
@@ -104,9 +104,7 @@
       font-weight: 700;
     }
 
-    .file-label {
-      display: inline-block;
-    }
+    .file-label { display: inline-block; }
 
     button:hover,
     .file-label:hover {
@@ -120,9 +118,15 @@
       color: white;
     }
 
-    .primary:hover {
-      background: #1ca961;
+    .primary:hover { background: #1ca961; }
+
+    .whatsapp-btn {
+      background: #128c7e;
+      border-color: #25d366;
+      color: white;
     }
+
+    .whatsapp-btn:hover { background: #075e54; }
 
     .danger {
       background: #3b1e2b;
@@ -130,9 +134,7 @@
       color: #ffc4cd;
     }
 
-    main {
-      padding: 28px 0 48px;
-    }
+    main { padding: 28px 0 48px; }
 
     .stats {
       display: grid;
@@ -150,9 +152,7 @@
       box-shadow: 0 10px 30px #0000001a;
     }
 
-    .stat {
-      padding: 19px;
-    }
+    .stat { padding: 19px; }
 
     .stat small,
     .value small {
@@ -170,17 +170,9 @@
       margin-top: 7px;
     }
 
-    .blue {
-      color: var(--blue);
-    }
-
-    .green {
-      color: var(--green);
-    }
-
-    .red {
-      color: var(--red);
-    }
+    .blue { color: var(--blue); }
+    .green { color: var(--green); }
+    .red { color: var(--red); }
 
     .grid {
       display: grid;
@@ -195,10 +187,7 @@
       top: 96px;
     }
 
-    h2 {
-      font-size: 1.15rem;
-      margin: 0 0 5px;
-    }
+    h2 { font-size: 1.15rem; margin: 0 0 5px; }
 
     .hint {
       color: var(--muted);
@@ -214,8 +203,7 @@
       margin: 0 0 13px;
     }
 
-    input,
-    select {
+    input, select {
       margin-top: 6px;
       width: 100%;
       display: block;
@@ -227,16 +215,23 @@
       font: inherit;
     }
 
-    input:focus,
-    select:focus {
+    input:focus, select:focus {
       outline: 3px solid #55a6ff26;
       border-color: var(--blue);
     }
 
-    .form .primary {
-      width: 100%;
-      margin-top: 4px;
+    .form .primary { width: 100%; margin-top: 4px; }
+
+    /* FILTROS E BUSCA */
+    .filter-bar {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
     }
+
+    .filter-bar input { margin: 0; flex: 1; min-width: 200px; }
+    .filter-bar select { margin: 0; width: auto; }
 
     .list-title {
       display: flex;
@@ -250,10 +245,7 @@
       font-size: .85rem;
     }
 
-    .list {
-      display: grid;
-      gap: 14px;
-    }
+    .list { display: grid; gap: 14px; }
 
     .empty {
       border: 1px dashed var(--line);
@@ -269,9 +261,7 @@
       margin-bottom: 5px;
     }
 
-    .debtor {
-      overflow: hidden;
-    }
+    .debtor { overflow: hidden; }
 
     .debtor-top {
       padding: 17px;
@@ -284,7 +274,23 @@
     .name {
       font-size: 1.08rem;
       font-weight: 800;
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
+
+    .badge {
+      font-size: 0.72rem;
+      padding: 3px 8px;
+      border-radius: 20px;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .badge-atrasado { background: #5c1d24; color: #ff9daa; border: 1px solid #843847; }
+    .badge-hoje { background: #523b08; color: #fce588; border: 1px solid #856112; }
+    .badge-emdia { background: #124029; color: #82eba8; border: 1px solid #1f6b43; }
+    .badge-quitado { background: #263345; color: #94aac4; border: 1px solid #3c526d; }
 
     .date {
       font-size: .81rem;
@@ -311,32 +317,26 @@
       gap: 10px;
     }
 
-    .value b {
-      font-size: .88rem;
-    }
-
-    .paid {
-      color: var(--green);
-    }
-
-    .interest {
-      color: #ffd37c;
-    }
+    .value b { font-size: .88rem; }
+    .paid { color: var(--green); }
+    .interest { color: #ffd37c; }
 
     .card-actions {
       display: flex;
       gap: 8px;
       padding: 0 17px 17px;
+      flex-wrap: wrap;
     }
 
     .card-actions button {
       flex: 1;
       padding: 8px;
       font-size: .83rem;
+      min-width: 110px;
     }
 
     dialog {
-      width: min(460px, calc(100% - 28px));
+      width: min(520px, calc(100% - 28px));
       padding: 0;
       border: 1px solid var(--line);
       border-radius: 16px;
@@ -350,9 +350,7 @@
       backdrop-filter: blur(3px);
     }
 
-    .modal {
-      padding: 22px;
-    }
+    .modal { padding: 22px; }
 
     .modalhead {
       display: flex;
@@ -392,14 +390,8 @@
       border-radius: 9px;
     }
 
-    .history-item b {
-      color: var(--green);
-    }
-
-    .history-item small {
-      display: block;
-      color: var(--muted);
-    }
+    .history-item b { color: var(--green); }
+    .history-item small { display: block; color: var(--muted); }
 
     #toast {
       position: fixed;
@@ -422,69 +414,21 @@
     }
 
     @media(max-width:720px) {
-      .wrap {
-        width: min(100% - 22px, 600px);
-      }
-
-      .top {
-        padding: 12px 0;
-        align-items: flex-start;
-      }
-
-      .brand {
-        font-size: 1.08rem;
-      }
-
-      .buttons {
-        gap: 6px;
-      }
-
-      .buttons button,
-      .file-label {
-        font-size: .78rem;
-        padding: 8px;
-      }
-
-      .stats {
-        grid-template-columns: 1fr;
-        gap: 8px;
-        margin-bottom: 20px;
-      }
-
-      .stat {
-        padding: 15px 17px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-      }
-
-      .stat strong {
-        margin: 0;
-        font-size: 1.25rem;
-      }
-
-      .grid {
-        grid-template-columns: 1fr;
-        gap: 22px;
-      }
-
-      .form {
-        position: static;
-      }
-
-      .values {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .card-actions {
-        flex-wrap: wrap;
-      }
-
-      .card-actions button {
-        min-width: calc(50% - 4px);
-      }
+      .wrap { width: min(100% - 22px, 600px); }
+      .top { padding: 12px 0; align-items: flex-start; }
+      .brand { font-size: 1.08rem; }
+      .buttons { gap: 6px; }
+      .buttons button { font-size: .78rem; padding: 8px; }
+      .stats { grid-template-columns: 1fr; gap: 8px; margin-bottom: 20px; }
+      .stat { padding: 15px 17px; display: flex; justify-content: space-between; align-items: center; }
+      .stat strong { margin: 0; font-size: 1.25rem; }
+      .grid { grid-template-columns: 1fr; gap: 22px; }
+      .form { position: static; }
+      .values { grid-template-columns: repeat(2, 1fr); }
+      .card-actions button { min-width: calc(50% - 4px); }
     }
 
+    /* AUTH TELA */
     #auth {
       position: fixed;
       inset: 0;
@@ -504,56 +448,49 @@
       box-shadow: 0 25px 70px #000b;
     }
 
-    .auth-logo {
-      font-size: 1.3rem;
-      font-weight: 800;
-      margin-bottom: 22px;
-    }
-
-    .auth-card h1 {
-      font-size: 1.35rem;
-      margin: 0 0 5px;
-    }
-
-    .auth-form {
-      margin-top: 20px;
-    }
-
-    .auth-form .primary {
-      width: 100%;
-      margin-top: 5px;
-    }
+    .auth-logo { font-size: 1.3rem; font-weight: 800; margin-bottom: 22px; }
+    .auth-card h1 { font-size: 1.35rem; margin: 0 0 5px; }
+    .auth-form { margin-top: 20px; }
+    .auth-form .primary { width: 100%; margin-top: 5px; }
 
     .auth-switch {
       display: block;
       border: 0;
       background: transparent;
       color: #91c6ff;
-      padding: 12px 0 0;
+      padding: 8px 0 0;
       margin: auto;
       font-size: .88rem;
     }
 
-    .auth-error {
-      min-height: 20px;
-      color: #ff9daa;
-      font-size: .85rem;
-      margin: 6px 0 0;
-    }
-
-    .hidden {
-      display: none !important;
-    }
+    .auth-error { min-height: 20px; color: #ff9daa; font-size: .85rem; margin: 6px 0 0; }
+    .hidden { display: none !important; }
 
     .config-section {
       border-top: 1px solid var(--line);
       padding-top: 14px;
       margin-top: 14px;
     }
+
+    /* GRÁFICOS CONTAINER */
+    .charts-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin-top: 15px;
+    }
+
+    .chart-box {
+      background: var(--input-bg);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 12px;
+    }
   </style>
 
-  <!-- Biblioteca para PDF -->
+  <!-- HTML2PDF e Chart.js -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
 <body>
@@ -561,6 +498,7 @@
     <div class="wrap top">
       <div class="brand"><span class="icon">💵</span>Amigo Cobrador</div>
       <div class="buttons">
+        <button id="openReports">📊 Relatórios</button>
         <button id="openSimulador">🧮 Simulador</button>
         <button id="openConfig">⚙️ Configurações</button>
         <button id="logout">Sair</button>
@@ -581,8 +519,10 @@
         <p class="hint">Cadastre os dados para começar o controle.</p>
         <form id="loanForm">
           <label class="field">Nome do devedor<input id="name" required maxlength="80" placeholder="Ex.: Maria Silva"></label>
+          <label class="field">Telefone WhatsApp (com DDD)<input id="phone" placeholder="Ex.: 85999998888" inputmode="tel"></label>
           <label class="field">Valor emprestado (R$)<input id="amount" type="number" min=".01" step=".01" required inputmode="decimal"></label>
           <label class="field">Data do empréstimo<input id="loanDate" type="date" required></label>
+          <label class="field">Data do primeiro vencimento<input id="dueDate" type="date" required></label>
           <label class="field">Taxa de juros (%)<input id="rate" type="number" min="0" step=".01" required value="0" inputmode="decimal"></label>
           <label class="field">Ciclo de cobrança
             <select id="cycle">
@@ -595,6 +535,16 @@
       </aside>
 
       <section>
+        <div class="filter-bar">
+          <input id="searchInput" placeholder="🔍 Buscar por nome do devedor...">
+          <select id="statusFilter">
+            <option value="all">Todos os Status</option>
+            <option value="pending">Apenas Pendentes</option>
+            <option value="atrasado">Apenas Em Atraso</option>
+            <option value="quitado">Apenas Quitados</option>
+          </select>
+        </div>
+
         <div class="list-title">
           <h2>Devedores</h2><span id="count">0 cadastrados</span>
         </div>
@@ -696,7 +646,10 @@
         <button class="close" type="button" data-close>×</button>
       </div>
       <label class="field">Nome do Devedor<input type="text" id="editName" required></label>
+      <label class="field">Telefone WhatsApp<input type="tel" id="editPhone"></label>
       <label class="field">Valor Inicial (R$)<input type="number" id="editValue" step="0.01" required></label>
+      <label class="field">Data do Empréstimo<input type="date" id="editLoanDate" required></label>
+      <label class="field">Data do Vencimento<input type="date" id="editDueDate" required></label>
       <label class="field">Taxa de Juros (%)<input type="number" id="editRate" step="0.1" required></label>
       <label class="field">Ciclo de Cobrança
         <select id="editCycle">
@@ -711,6 +664,30 @@
     </form>
   </dialog>
 
+  <!-- Modal Relatórios -->
+  <dialog id="reportsModal">
+    <div class="modal" style="max-width: 650px;">
+      <div class="modalhead">
+        <div>
+          <h2>📊 Relatórios Financeiros</h2>
+          <p class="hint">Visão geral do seu desempenho de cobranças</p>
+        </div>
+        <button class="close" type="button" data-close>×</button>
+      </div>
+
+      <div class="charts-container">
+        <div class="chart-box">
+          <h3 style="font-size: 0.9rem; margin-top: 0;">Recebimentos por Mês (R$)</h3>
+          <canvas id="chartPayments"></canvas>
+        </div>
+        <div class="chart-box">
+          <h3 style="font-size: 0.9rem; margin-top: 0;">Status das Carteiras</h3>
+          <canvas id="chartStatus"></canvas>
+        </div>
+      </div>
+    </div>
+  </dialog>
+
   <!-- Modal Configurações -->
   <dialog id="configModal">
     <div class="modal">
@@ -722,8 +699,16 @@
         <button class="close" type="button" data-close>×</button>
       </div>
 
-      <!-- Tema -->
+      <!-- Chave PIX -->
       <div class="config-section" style="margin-top:0; border-top:none; padding-top:0;">
+        <label class="field">Sua Chave PIX (Para mensagens do WhatsApp)
+          <input id="pixKeyConfig" placeholder="CPF, E-mail, Telefone ou Aleatória">
+        </label>
+        <button id="savePixKey" class="primary" style="width: 100%; margin-top: 5px;">Salvar Chave PIX</button>
+      </div>
+
+      <!-- Tema -->
+      <div class="config-section">
         <label class="field">Tema do Sistema
           <select id="themeSelect">
             <option value="dark">Tema Escuro</option>
@@ -773,7 +758,20 @@
           <p class="auth-error" id="loginError"></p>
           <button class="primary" type="submit">Entrar</button>
         </form>
+        <button class="auth-switch" id="showReset">Esqueci minha senha</button>
         <button class="auth-switch" id="showRegister">Ainda não tem conta? Cadastre-se</button>
+      </div>
+
+      <!-- Reset de Senha -->
+      <div id="resetBox" class="hidden">
+        <h1>Recuperar Senha</h1>
+        <p class="hint">Digite seu nome e sobrenome cadastrados para receber o e-mail de redefinição.</p>
+        <form class="auth-form" id="resetForm">
+          <label class="field">Seu Login (nome e sobrenome)<input id="resetName" required placeholder="Ex.: Maria Silva"></label>
+          <p class="auth-error" id="resetError"></p>
+          <button class="primary" type="submit">Enviar E-mail de Recuperação</button>
+        </form>
+        <button class="auth-switch" id="cancelReset">Voltar para Login</button>
       </div>
 
       <div id="registerBox" class="hidden">
@@ -817,8 +815,10 @@
       nameToEmail = name => name.trim().toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/\s+/g, ".") + "@amigocobrador.com",
       pinToPassword = pin => "ac_pin_" + pin;
 
-    q("showRegister").onclick = () => { q("loginBox").classList.add("hidden"); q("registerBox").classList.remove("hidden"); };
-    q("showLogin").onclick = () => { q("registerBox").classList.add("hidden"); q("loginBox").classList.remove("hidden"); };
+    q("showRegister").onclick = () => { q("loginBox").classList.add("hidden"); q("resetBox").classList.add("hidden"); q("registerBox").classList.remove("hidden"); };
+    q("showLogin").onclick = () => { q("registerBox").classList.add("hidden"); q("resetBox").classList.add("hidden"); q("loginBox").classList.remove("hidden"); };
+    q("showReset").onclick = () => { q("loginBox").classList.add("hidden"); q("resetBox").classList.remove("hidden"); };
+    q("cancelReset").onclick = () => { q("resetBox").classList.add("hidden"); q("loginBox").classList.remove("hidden"); };
 
     q("registerForm").onsubmit = async e => {
       e.preventDefault();
@@ -850,6 +850,20 @@
       }
     };
 
+    q("resetForm").onsubmit = async e => {
+      e.preventDefault();
+      let name = q("resetName").value.trim();
+      let email = nameToEmail(name);
+      try {
+        await auth.sendPasswordResetEmail(email);
+        alert("E-mail de redefinição enviado com sucesso para o endereço associado!");
+        q("resetBox").classList.add("hidden");
+        q("loginBox").classList.remove("hidden");
+      } catch (err) {
+        q("resetError").textContent = "Usuário não encontrado.";
+      }
+    };
+
     q("logout").onclick = () => auth.signOut();
 
     auth.onAuthStateChanged(user => {
@@ -867,7 +881,14 @@
       date = x => new Date(x + "T12:00:00").toLocaleDateString("pt-BR"),
       uid = () => crypto.randomUUID ? crypto.randomUUID() : Date.now() + "" + Math.random();
 
-    let all = [], sel, unsubscribe = null;
+    let all = [], sel, unsubscribe = null, pixKey = localStorage.getItem("ac_pix_key") || "";
+    q("pixKeyConfig").value = pixKey;
+
+    q("savePixKey").onclick = () => {
+      pixKey = q("pixKeyConfig").value.trim();
+      localStorage.setItem("ac_pix_key", pixKey);
+      msg("Chave PIX salva!");
+    };
 
     const msg = x => {
       q("toast").textContent = x;
@@ -879,8 +900,10 @@
       clean = d => d && d.id && d.nome ? {
         id: "" + d.id,
         nome: "" + d.nome,
+        telefone: "" + (d.telefone || ""),
         valorInicial: +d.valorInicial || 0,
         dataEmprestimo: d.dataEmprestimo || now(),
+        dataVencimento: d.dataVencimento || d.dataEmprestimo || now(),
         taxaJuros: Math.max(0, +d.taxaJuros || 0),
         tipoJuros: d.tipoJuros === "diario" ? "diario" : "mensal",
         pagamentos: Array.isArray(d.pagamentos) ? d.pagamentos.map(p => ({
@@ -898,8 +921,21 @@
           ? Math.max(0, Math.floor((new Date(b.getFullYear(), b.getMonth(), b.getDate()) - a) / 86400000))
           : Math.max(1, (b.getFullYear() - a.getFullYear()) * 12 + b.getMonth() - a.getMonth() - (b.getDate() < a.getDate() ? 1 : 0)),
         j = d.valorInicial * d.taxaJuros / 100 * n,
-        p = d.pagamentos.reduce((s, x) => s + x.valor, 0);
-      return { j: j, p: p, s: d.valorInicial + j - p };
+        p = d.pagamentos.reduce((s, x) => s + x.valor, 0),
+        saldo = d.valorInicial + j - p;
+
+      // Status
+      let status = "emdia";
+      let todayStr = now();
+      if (saldo <= 0) {
+        status = "quitado";
+      } else if (d.dataVencimento < todayStr) {
+        status = "atrasado";
+      } else if (d.dataVencimento === todayStr) {
+        status = "hoje";
+      }
+
+      return { j: j, p: p, s: saldo, status: status };
     }
 
     async function salvarFirestore() {
@@ -936,25 +972,53 @@
         ? '<button class="primary" data-a="pdf" data-id="' + d.id + '">📄 Baixar PDF</button>'
         : '<button class="primary" data-a="pay" data-id="' + d.id + '">+ Receber</button>';
 
-      return '<article class="debtor"><div class="debtor-top"><div><div class="name">' + esc(d.nome) + '</div><span class="date">Empréstimo em ' + date(d.dataEmprestimo) + '</span></div><div class="balance">Saldo atual<b>' + br(x.s) + '</b></div></div><div class="values"><div class="value"><small>Valor inicial</small><b>' + br(d.valorInicial) + '</b></div><div class="value"><small>Já pago</small><b class="paid">' + br(x.p) + '</b></div><div class="value"><small>Juros acumulados</small><b class="interest">' + br(x.j) + '</b></div><div class="value"><small>Taxa</small><b>' + d.taxaJuros + '% / ' + (d.tipoJuros === "diario" ? "dia" : "mês") + '</b></div></div><div class="card-actions">' + pdfBtn + '<button data-a="history" data-id="' + d.id + '">Histórico</button><button data-a="edit" data-id="' + d.id + '">Editar</button><button class="danger" data-a="del" data-id="' + d.id + '">Excluir</button></div></article>';
+      let badgeHtml = "";
+      if (x.status === "atrasado") badgeHtml = '<span class="badge badge-atrasado">🔴 Em Atraso</span>';
+      else if (x.status === "hoje") badgeHtml = '<span class="badge badge-hoje">🟡 Vence Hoje</span>';
+      else if (x.status === "emdia") badgeHtml = '<span class="badge badge-emdia">🟢 Em Dia</span>';
+      else badgeHtml = '<span class="badge badge-quitado">⚪ Quitado</span>';
+
+      let whatsappBtn = d.telefone ? '<button class="whatsapp-btn" data-a="wsp" data-id="' + d.id + '">📱 WhatsApp</button>' : '';
+
+      return '<article class="debtor"><div class="debtor-top"><div><div class="name">' + esc(d.nome) + ' ' + badgeHtml + '</div><span class="date">Empréstimo: ' + date(d.dataEmprestimo) + ' | Vencimento: <b>' + date(d.dataVencimento) + '</b></span></div><div class="balance">Saldo atual<b>' + br(x.s) + '</b></div></div><div class="values"><div class="value"><small>Valor inicial</small><b>' + br(d.valorInicial) + '</b></div><div class="value"><small>Já pago</small><b class="paid">' + br(x.p) + '</b></div><div class="value"><small>Juros acumulados</small><b class="interest">' + br(x.j) + '</b></div><div class="value"><small>Taxa</small><b>' + d.taxaJuros + '% / ' + (d.tipoJuros === "diario" ? "dia" : "mês") + '</b></div></div><div class="card-actions">' + pdfBtn + whatsappBtn + '<button data-a="history" data-id="' + d.id + '">Histórico</button><button data-a="edit" data-id="' + d.id + '">Editar</button><button class="danger" data-a="del" data-id="' + d.id + '">Excluir</button></div></article>';
     }
 
     function render() {
       let t = { l: 0, p: 0, s: 0 };
+      let searchTerm = q("searchInput").value.toLowerCase().trim();
+      let statusFilter = q("statusFilter").value;
+
+      let filtered = all.filter(d => {
+        let x = calc(d);
+        let matchesSearch = d.nome.toLowerCase().includes(searchTerm);
+        let matchesStatus = true;
+
+        if (statusFilter === "pending") matchesStatus = x.s > 0;
+        else if (statusFilter === "atrasado") matchesStatus = x.status === "atrasado";
+        else if (statusFilter === "quitado") matchesStatus = x.s <= 0;
+
+        return matchesSearch && matchesStatus;
+      });
+
       all.forEach(d => {
         let x = calc(d);
         t.l += d.valorInicial;
         t.p += x.p;
         t.s += x.s;
       });
+
       q("totalLoan").textContent = br(t.l);
       q("totalReceived").textContent = br(t.p);
       q("totalDue").textContent = br(t.s);
-      q("count").textContent = all.length + " " + (all.length === 1 ? "cadastrado" : "cadastrados");
-      q("list").innerHTML = all.length ? all.map(renderCard).join("") : '<div class="empty"><b>Nenhum empréstimo cadastrado</b>Use o formulário para adicionar o primeiro devedor.</div>';
+      q("count").textContent = filtered.length + " " + (filtered.length === 1 ? "exibido" : "exibidos");
+      q("list").innerHTML = filtered.length ? filtered.map(renderCard).join("") : '<div class="empty"><b>Nenhum empréstimo encontrado</b>Tente alterar a busca ou filtros.</div>';
     }
 
+    q("searchInput").oninput = render;
+    q("statusFilter").onchange = render;
+
     q("loanDate").value = now();
+    q("dueDate").value = now();
     q("payDate").value = now();
 
     q("loanForm").onsubmit = async e => {
@@ -962,8 +1026,10 @@
       let d = clean({
         id: uid(),
         nome: q("name").value.trim(),
+        telefone: q("phone").value.replace(/\D/g, ""),
         valorInicial: q("amount").value,
         dataEmprestimo: q("loanDate").value,
+        dataVencimento: q("dueDate").value,
         taxaJuros: q("rate").value,
         tipoJuros: q("cycle").value,
         pagamentos: []
@@ -974,6 +1040,7 @@
       render();
       e.target.reset();
       q("loanDate").value = now();
+      q("dueDate").value = now();
       q("rate").value = 0;
       msg("Empréstimo cadastrado.");
     };
@@ -985,7 +1052,15 @@
       if (!d) return;
       sel = d.id;
 
-      if (b.dataset.a === "pdf") {
+      if (b.dataset.a === "wsp") {
+        let x = calc(d);
+        let text = `Olá ${d.nome}! %0A%0ASegue o resumo do seu empréstimo:%0A- *Saldo Devedor:* ${br(x.s)}%0A- *Vencimento:* ${date(d.dataVencimento)}`;
+        if (pixKey) text += `%0A%0A*Chave PIX para pagamento:* ${pixKey}`;
+        text += `%0A%0AQualquer dúvida estou à disposição!`;
+
+        let phone = d.telefone.length <= 11 ? "55" + d.telefone : d.telefone;
+        window.open(`https://wa.me/${phone}?text=${text}`, "_blank");
+      } else if (b.dataset.a === "pdf") {
         gerarPDFQuitacao(d);
         msg("Gerando PDF do comprovante...");
       } else if (b.dataset.a === "pay") {
@@ -1001,7 +1076,10 @@
         q("historyDialog").showModal();
       } else if (b.dataset.a === "edit") {
         q("editName").value = d.nome;
+        q("editPhone").value = d.telefone || "";
         q("editValue").value = d.valorInicial;
+        q("editLoanDate").value = d.dataEmprestimo;
+        q("editDueDate").value = d.dataVencimento;
         q("editRate").value = d.taxaJuros;
         q("editCycle").value = d.tipoJuros;
         q("editModal").showModal();
@@ -1019,7 +1097,10 @@
       if (!d) return;
 
       d.nome = q("editName").value.trim();
+      d.telefone = q("editPhone").value.replace(/\D/g, "");
       d.valorInicial = +q("editValue").value || 0;
+      d.dataEmprestimo = q("editLoanDate").value;
+      d.dataVencimento = q("editDueDate").value;
       d.taxaJuros = +q("editRate").value || 0;
       d.tipoJuros = q("editCycle").value;
 
@@ -1042,10 +1123,60 @@
 
     document.querySelectorAll("[data-close]").forEach(x => x.onclick = () => x.closest("dialog").close());
 
+    // --- RELATÓRIOS ---
+    let chart1 = null, chart2 = null;
+    q("openReports").onclick = () => {
+      q("reportsModal").showModal();
+      renderCharts();
+    };
+
+    function renderCharts() {
+      // Dados Pagamentos
+      let payByMonth = {};
+      all.forEach(d => {
+        d.pagamentos.forEach(p => {
+          let m = p.data.slice(0, 7);
+          payByMonth[m] = (payByMonth[m] || 0) + p.valor;
+        });
+      });
+
+      let months = Object.keys(payByMonth).sort();
+      let monthValues = months.map(m => payByMonth[m]);
+
+      if (chart1) chart1.destroy();
+      chart1 = new Chart(q("chartPayments"), {
+        type: 'bar',
+        data: {
+          labels: months.length ? months : ['Sem dados'],
+          datasets: [{ label: 'Recebido (R$)', data: monthValues.length ? monthValues : [0], backgroundColor: '#23bd6c' }]
+        },
+        options: { responsive: true }
+      });
+
+      // Dados Status
+      let stCount = { atrasado: 0, hoje: 0, emdia: 0, quitado: 0 };
+      all.forEach(d => {
+        let x = calc(d);
+        stCount[x.status]++;
+      });
+
+      if (chart2) chart2.destroy();
+      chart2 = new Chart(q("chartStatus"), {
+        type: 'doughnut',
+        data: {
+          labels: ['Em Atraso', 'Vence Hoje', 'Em Dia', 'Quitados'],
+          datasets: [{
+            data: [stCount.atrasado, stCount.hoje, stCount.emdia, stCount.quitado],
+            backgroundColor: ['#ff667b', '#f59e0b', '#23bd6c', '#94aac4']
+          }]
+        },
+        options: { responsive: true }
+      });
+    }
+
     // --- CONFIGURAÇÕES & BACKUP ---
     q("openConfig").onclick = () => q("configModal").showModal();
 
-    // Tema
     const savedTheme = localStorage.getItem("ac_theme") || "dark";
     if (savedTheme === "light") {
       document.body.classList.add("light-theme");
@@ -1062,7 +1193,6 @@
       }
     };
 
-    // Alterar Senha (PIN)
     q("changePinForm").onsubmit = async e => {
       e.preventDefault();
       let newPin = q("newPin").value;
@@ -1082,7 +1212,7 @@
     };
 
     q("exportConfig").onclick = () => {
-      let u = URL.createObjectURL(new Blob([JSON.stringify({ app: "Amigo Cobrador", versao: 1, exportadoEm: new Date().toISOString(), devedores: all }, null, 2)], { type: "application/json" })),
+      let u = URL.createObjectURL(new Blob([JSON.stringify({ app: "Amigo Cobrador", versao: 2, exportadoEm: new Date().toISOString(), devedores: all }, null, 2)], { type: "application/json" })),
         a = document.createElement("a");
       a.href = u;
       a.download = "amigo-cobrador-backup-" + now() + ".json";
